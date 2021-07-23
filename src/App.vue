@@ -69,7 +69,6 @@ export default {
     ]
 
     const showImages = index =>{
-      console.log('show-images', index)
       ImageViewer({ images, current: index })
     }
 

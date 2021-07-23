@@ -1,6 +1,7 @@
 <template>
     <transition name="fade" @after-leave="$emit('destroy')">
-        <div class="image-viewer" v-show="visible">
+        <div class="image-viewer" v-show="visible" @click="tools.maskClick($event)">
+            <div class="mask"></div>
             <div class="content">
                 <div class="images-container" :style="{ transform: `translate(${current_ * -translateStep}%, 0)` }">
                     <div
@@ -38,24 +39,27 @@
                     <img src="./images/next.png"/>
                 </div>
                 <div class="bottom">
+                    <!-- 放大 -->
                     <div class="item" @click="tools.zoomStep('in')">
                         <img src="./images/zoom-in.png"/>
                     </div>
+                    <!-- 缩小 -->
                     <div class="item" @click="tools.zoomStep('out')">
                         <img src="./images/zoom-out.png"/>
                     </div>
+                    <!-- 还原大小 -->
                     <div class="item" @click="tools.scaleRestore">
                         <img src="./images/1-1.png"/>
                     </div>
-                    <!-- <div class="item">
-                        <img src="./images/play.png"/>
-                    </div> -->
+                    <!-- 重置 -->
                     <div class="item" @click="tools.restore">
                         <img src="./images/refresh.png"/>
                     </div>
+                    <!-- 右转90度 -->
                     <div class="item" @click="tools.rotate(90)">
                         <img src="./images/rotate-left.png"/>
                     </div>
+                    <!-- 左转90度 -->
                     <div class="item"  @click="tools.rotate(-90)">
                         <img src="./images/rotate-right.png"/>
                     </div>
@@ -276,6 +280,11 @@ export default {
             },
             close() {
                 visible.value = false;
+            },
+            maskClick (e) {
+                if (e.target && e.target.className === 'image-item') {
+                    tools.close()
+                }
             }
         };
 
@@ -331,13 +340,19 @@ export default {
 }
 .image-viewer {
     position: fixed;
-    z-index: 999;
+    z-index: 99999999999;
     width: 100%;
     height: 100%;
     left: 0;
     top: 0;
-    background: rgba(0, 0, 0, 0.3);
-    user-select: none;
+}
+.image-viewer .mask {
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
 }
 .actions > .top {
     position: absolute;
