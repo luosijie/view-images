@@ -32,10 +32,10 @@
                 <div class="close" @click="tools.close">
                     <img src="./images/close.png"/>
                 </div>
-                <div class="item pre" @click="tools.pre">
+                <div class="item pre" @click="tools.pre" v-if="images.length > 1">
                     <img src="./images/pre.png"/>
                 </div>
-                <div class="item next" @click="tools.next">
+                <div class="item next" @click="tools.next" v-if="images.length > 1">
                     <img src="./images/next.png"/>
                 </div>
                 <div class="bottom">
@@ -110,22 +110,30 @@ export default {
         const windowWidth = window.innerWidth;
 
         // 构造统一的images数据结构
-        props.images.forEach((elem) => {
-            const data = {
-                originWidth: windowWidth / 2,
-                scale: 1,
-                width: windowWidth / 2,
-                marginLeft: 0,
-                marginTop: 0
-            };
-            // 图片路径统一放在数组对象 [{ url }] 中
-            if (typeof elem === "string") {
-                data.url = elem;
-            } else {
-                data.url = data[props.urlKey];
+        for (let i = 0; i < props.images.length; i++) {
+            const elem = props.images[i]
+            const img = new Image()
+            img.src = elem
+            img.onload = () => {
+                const data = {
+                    rawWidth: img.width,
+                    rawHeight: img.height,
+                    originWidth: windowWidth / 2,
+                    scale: 1,
+                    width: windowWidth / 2,
+                    marginLeft: 0,
+                    marginTop: 0
+                }
+                data.width = data.originWidth = windowWidth / 2
+                // 图片路径统一放在数组对象 [{ url }] 中
+                if (typeof elem === "string") {
+                    data.url = elem
+                } else {
+                    data.url = data[props.urlKey]
+                }
+                images_.value.push(data)
             }
-            images_.value.push(data);
-        });
+        }
 
         /**
          * 图片缩放
@@ -134,13 +142,13 @@ export default {
          */
         const zoom = (type, speed = 0.02) => {
             const image = images_.value[current_.value]
-            const scale = image.scale;
+            const scale = image.scale
             if (type === "in") {
                 if (scale > 3) {
                     image.scale = 3;
                     return;
                 }
-                image.scale = Number((scale + speed).toFixed(2));
+                image.scale = Number((scale + speed).toFixed(2))
             } else if (type === "out") {
                 if (scale < 0.3) {
                     image.scale = 0.3;
@@ -208,7 +216,7 @@ export default {
             const speed = 0.03
             const image = images_.value[current_.value];
             aniIncrease({ target, image, key, speed }, value => {
-                image.width = value * image.originWidth;
+                image.width = value * image.originWidth
             })
         }
 
@@ -226,8 +234,7 @@ export default {
         }
 
         const positionRestore = () => {
-            const image = images_.value[current_.value];
-            console.log('image:', image.margintLeft, image.marginTop)
+            const image = images_.value[current_.value]
             const target = 0
             const speed = 10
             if (image.marginLeft > 0) aniDecrease({ target, image, key: 'marginLeft', speed })
@@ -329,7 +336,7 @@ export default {
             visible,
             tools,
             listeners,
-        };
+        }
     }
 };
 </script>
@@ -439,9 +446,6 @@ export default {
     overflow: hidden;
     user-select: none;
     transition: transform 300ms ease-in-out;
-}
-.image-item img {
-    width: 800px;
 }
 
 .content {

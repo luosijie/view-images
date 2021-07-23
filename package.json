@@ -1,5 +1,14 @@
 {
   "name": "image-viewer",
+  "files": ["docs"],
+  "main": "./docs/image-viewer.umd.js",
+  "module": "./docs/image-viewer.es.js",
+  "exports": {
+    ".": {
+      "import": "./docs/image-viewer.es.js",
+      "require": "./docs/image-viewer.umd.js"
+    }
+  },
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
