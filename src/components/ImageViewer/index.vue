@@ -326,6 +326,9 @@ export default {
 </script>
 
 <style scoped>
+* {
+    box-sizing: border-box;
+}
 .image-viewer {
     position: fixed;
     z-index: 999;
@@ -365,7 +368,6 @@ export default {
     position: absolute;
     bottom: 20px;
     left: 20px;
-    cursor: crosshair;
 }
 
 .actions > .bottom {
