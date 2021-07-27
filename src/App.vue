@@ -56,6 +56,7 @@
 
 <script>
 import ImageViewer from './components/ImageViewer'
+// import ImageViewer from '../docs/image-viewer.es'
 
 export default {
   setup () {
