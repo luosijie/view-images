@@ -26,7 +26,7 @@
         &lt;/div&gt;
       &lt;/template&gt;
 
-      import ImageViewer from './components/ImageViewer'
+      import ImageViewer from './ImageViewer'
 
       export default {
         setup () {
@@ -55,18 +55,17 @@
 </template>
 
 <script>
-import ImageViewer from './components/ImageViewer'
+import ImageViewer from './ImageViewer'
 // import ImageViewer from '../docs/image-viewer.es'
-
 export default {
   setup () {
 
     const images = [
-      './assets/01.jpeg',
-      './assets/02.jpeg',
-      './assets/03.jpeg',
-      './assets/04.jpeg',
-      './assets/05.jpeg',
+      '/src/assets/01.jpeg',
+      '/src/assets/02.jpeg',
+      '/src/assets/03.jpeg',
+      '/src/assets/04.jpeg',
+      '/src/assets/05.jpeg'
     ]
 
     const showImages = index =>{
@@ -80,8 +79,6 @@ export default {
   }
 }
 
-// This starter template is using Vue 3 experimental <script setup> SFCs
-// Check out https://github.com/vuejs/rfcs/blob/script-setup-2/active-rfcs/0000-script-setup.md
 </script>
 
 <style>
