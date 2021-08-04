@@ -1,17 +1,17 @@
 {
-  "name": "image-viewer",
+  "name": "view-images",
   "files": [
-    "docs"
+    "dist"
   ],
-  "main": "./docs/image-viewer.umd.js",
-  "module": "./docs/image-viewer.es.js",
+  "main": "./dist/image-viewer.umd.js",
+  "module": "./dist/image-viewer.es.js",
   "exports": {
     ".": {
-      "import": "./docs/image-viewer.es.js",
-      "require": "./docs/image-viewer.umd.js"
+      "import": "./dist/image-viewer.es.js",
+      "require": "./dist/image-viewer.umd.js"
     }
   },
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
