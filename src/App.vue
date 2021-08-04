@@ -57,16 +57,15 @@
 <script>
 import ImageViewer from './ImageViewer'
 // import ImageViewer from '../docs/image-viewer.es'
+import img_01 from './assets/01.jpeg'
+import img_02 from './assets/02.jpeg'
+import img_03 from './assets/03.jpeg'
+import img_04 from './assets/04.jpeg'
+import img_05 from './assets/05.jpeg'
 export default {
   setup () {
 
-    const images = [
-      '/src/assets/01.jpeg',
-      '/src/assets/02.jpeg',
-      '/src/assets/03.jpeg',
-      '/src/assets/04.jpeg',
-      '/src/assets/05.jpeg'
-    ]
+    const images = [ img_01 , img_02, img_03, img_04, img_05 ]
 
     const showImages = index =>{
       ImageViewer({ images, current: index })
