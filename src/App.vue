@@ -1,6 +1,6 @@
 <template>
   <div class="title">
-    <h1>Image Viewer</h1>
+    <h1>view-images</h1>
     <p>A images viewer plugin for Vue3</p>
   </div>
   <div class="images">
@@ -8,7 +8,7 @@
         v-for="(item, index) in images"
         :src="item"
         :key="index"
-        @click="showImages(index)"
+        @click="viewImages(index)"
       />
   </div>
   <p style="color: #eee">Photos from Jesse Luo</p>
@@ -21,12 +21,13 @@
               :src="item"
               v-for="(item, index) in images"
               :key="index"
-              @click="showImages(index)"
+              @click="viewImages(index)"
           /&gt;
         &lt;/div&gt;
       &lt;/template&gt;
 
-      import ImageViewer from './ImageViewer'
+      import view from 'view-images'
+      import 'view-images/dist/style.css'
 
       export default {
         setup () {
@@ -39,12 +40,12 @@
             './assets/05.jpeg',
           ]
 
-          const showImages = index => {
-            ImageViewer({ images, current: index })
+          const viewImages = index => {
+            view({ images, current: index })
           }
 
           return {
-            showImages,
+            viewImages,
             images
           }
 
@@ -55,7 +56,15 @@
 </template>
 
 <script>
-import ImageViewer from './ImageViewer'
+import view from './view-images'
+
+// import view from 'view-images'
+// import 'view-images/dist/style.css'
+
+// import view from '../dist/view-images.es'
+// import '../dist/style.css'
+
+
 // import ImageViewer from '../docs/image-viewer.es'
 import img_01 from './assets/01.jpeg'
 import img_02 from './assets/02.jpeg'
@@ -67,12 +76,12 @@ export default {
 
     const images = [ img_01 , img_02, img_03, img_04, img_05 ]
 
-    const showImages = index =>{
-      ImageViewer({ images, current: index })
+    const viewImages = index =>{
+      view({ images, current: index })
     }
 
     return {
-      showImages,
+      viewImages,
       images
     }
   }

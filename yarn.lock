@@ -362,6 +362,37 @@ util-deprecate@^1.0.2:
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
 
+view-images@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/view-images/-/view-images-0.0.2.tgz#13197e1c88f69e5c0a4eb5d5727f0ce480c5f302"
+  integrity sha512-5JC+4LfMpQgYUf+yZkgWz2QTzRd7HvVNCuIqu7XtoAWiJDskdbNuJz9eb8hEJI8x+v6aLgL5oz0590s3N95T3Q==
+  dependencies:
+    vue "^3.0.5"
+
+view-images@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/view-images/-/view-images-0.0.3.tgz#e7e15a0c36ea59ad3d602b227868d1f2ec71bfb5"
+  integrity sha512-THSrVZu+P0KU3qRDtwu4NVXAtSRMBaLhEZtIskMB/yhy1l64MeL2KmKpf58R73cbCq0KiGN7Ev3lp2DkloD92g==
+  dependencies:
+    view-images "^0.0.2"
+    vue "^3.0.5"
+
+view-images@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/view-images/-/view-images-0.0.4.tgz#aee97ea6ba3d79d46820518fd80d1cf04220b09d"
+  integrity sha512-H5o0H6AXEyQTJ9FZLfDpSSj32g80yPyx96VURg3hy5yOFpPU7h34IbcQK6k3jvPFesZKaqC8aliksdw2B0T6kg==
+  dependencies:
+    view-images "^0.0.3"
+    vue "^3.0.5"
+
+view-images@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/view-images/-/view-images-0.0.5.tgz#63d02bdaee2167d5af89c303de3b2c388751072e"
+  integrity sha512-UQrZh5S8lcKY8cZ+svzrHHEdb3NdIaTgojwRP64f+dAcH+Ed8BjZ1FBlEIhTVdpRF6ZRTorEMLt83r5jmdV4Yw==
+  dependencies:
+    view-images "^0.0.4"
+    vue "^3.0.5"
+
 vite@^2.3.3:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/vite/-/vite-2.3.3.tgz#7e88a71abd03985c647789938d784cce0ee3b0fd"

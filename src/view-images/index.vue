@@ -1,7 +1,7 @@
 <template>
     <transition name="fade" @after-leave="$emit('destroy')">
-        <div v-show="visible" @click="tools.maskClick($event)" :style="style.imageViewer">
-            <div :style="style.mask"></div>
+        <div class="image-viewer" v-show="visible" @click="tools.maskClick($event)">
+            <div class="mask"></div>
             <div class="content">
                 <div class="images-container" :style="{ transform: `translate(${current_ * -translateStep}%, 0)` }">
                     <div
@@ -26,11 +26,11 @@
                 </div>
             </div>
             <div class="actions">
-                <div :style="style.index">
+                <div class="top">
                     <span class="index">{{ current_ + 1 }}/{{ images_.length }}</span>
                 </div>
-                <div @click="tools.close" :style="style.close">
-                    <img src="./images/close.png" :style="style.closeImg"/>
+                <div class="close" @click="tools.close">
+                    <img src="./images/close.png"/>
                 </div>
                 <div class="item pre" @click="tools.pre" v-if="images.length > 1">
                     <img src="./images/pre.png"/>
@@ -70,12 +70,11 @@
 </template>
 
 <script>
-import { ref } from "@vue/reactivity"
-import { onMounted } from "@vue/runtime-core"
-import style from './style'
+import { ref } from "@vue/reactivity";
+import { onMounted } from "@vue/runtime-core";
 
 export default {
-    name: "ImageViewer",
+    name: "ViewImages",
     props: {
         type: {
             type: String,
@@ -337,7 +336,6 @@ export default {
             visible,
             tools,
             listeners,
-            style
         }
     }
 };
@@ -347,23 +345,23 @@ export default {
 * {
     box-sizing: border-box;
 }
-/* .image-viewer {
+.image-viewer {
     position: fixed;
     z-index: 99999999999;
     width: 100%;
     height: 100%;
     left: 0;
     top: 0;
-} */
-/* .image-viewer .mask {
+}
+.image-viewer .mask {
     background: rgba(0, 0, 0, 0.5);
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-} */
-/* .actions > .index {
+}
+.actions > .top {
     position: absolute;
     left: 50%;
     width: 100px;
@@ -375,8 +373,8 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-} */
-/* .actions > .close {
+}
+.actions > .close {
     position: absolute;
     right: -50px;
     top: -50px;
@@ -387,12 +385,12 @@ export default {
     line-height: 50px;
     text-align: center;
     cursor: pointer;
-} */
-/* .actions > .close img {
+}
+.actions > .close img {
     position: absolute;
     bottom: 20px;
     left: 20px;
-} */
+}
 
 .actions > .bottom {
     position: absolute;

@@ -8,18 +8,18 @@ export default defineConfig({
   plugins: [vue()],
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/ImageViewer/index.js'),
-      name: 'ImageViewer'
+      entry: path.resolve(__dirname, 'src/view-images/index.js'),
+      name: 'view-images'
     },
-    rollupOptions: {
-      external: ['vue'],
-      output: {
-        // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
-        globals: {
-          vue: 'Vue'
-        }
-      }
-    },
+    // rollupOptions: {
+    //   external: ['vue'],
+    //   output: {
+    //     // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
+    //     globals: {
+    //       vue: 'Vue'
+    //     }
+    //   }
+    // },
     outDir: 'dist'
   }
 })

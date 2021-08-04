@@ -3,15 +3,20 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/image-viewer.umd.js",
-  "module": "./dist/image-viewer.es.js",
+  "main": "./dist/view-images.umd.js",
+  "module": "./dist/view-images.es.js",
+  "style": "./dist/style.css",
   "exports": {
     ".": {
-      "import": "./dist/image-viewer.es.js",
-      "require": "./dist/image-viewer.umd.js"
+      "import": "./dist/view-images.es.js",
+      "require": "./dist/view-images.umd.js"
+    },
+    "./dist/style.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
     }
   },
-  "version": "0.0.1",
+  "version": "0.0.5",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -19,6 +24,7 @@
     "build:docs": "vite build --config vite.config.docs.js"
   },
   "dependencies": {
+    "view-images": "^0.0.5",
     "vue": "^3.0.5"
   },
   "devDependencies": {
