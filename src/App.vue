@@ -33,11 +33,11 @@
         setup () {
 
           const images = [
-            './assets/01.jpeg',
-            './assets/02.jpeg',
-            './assets/03.jpeg',
-            './assets/04.jpeg',
-            './assets/05.jpeg',
+            'https://../assets/01.jpeg',
+            'https://../assets/02.jpeg',
+            'https://../assets/03.jpeg',
+            'https://../assets/04.jpeg',
+            'https://../assets/05.jpeg',
           ]
 
           const viewImages = index => {
