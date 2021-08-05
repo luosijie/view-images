@@ -64,8 +64,6 @@ import view from './view-images'
 // import view from '../dist/view-images.es'
 // import '../dist/style.css'
 
-
-// import ImageViewer from '../docs/image-viewer.es'
 import img_01 from './assets/01.jpeg'
 import img_02 from './assets/02.jpeg'
 import img_03 from './assets/03.jpeg'

@@ -91,12 +91,8 @@ export default {
         images: {
             type: Array,
             default() {
-                return [
-                    "http://img-arch.pconline.com.cn/images/upload/upc/tx/softbbs/1003/07/c0/3134443_1267900790753_1024x1024soft.jpg",
-                    "http://img-arch.pconline.com.cn/images/upload/upc/tx/softbbs/1003/07/c0/3134443_1267900790753_1024x1024soft.jpg",
-                    "http://img-arch.pconline.com.cn/images/upload/upc/tx/softbbs/1003/07/c0/3134443_1267900790753_1024x1024soft.jpg",
-                ];
-            },
+                return []
+            }
         },
     },
     emits: ["destroy"],

@@ -2,7 +2,7 @@ import { createVNode } from '@vue/runtime-core'
 import { render } from '@vue/runtime-dom'
 import constructor from './index.vue'
 
-const ViewViewer = (options = {}) => {
+const viewImages = (options = {}) => {
     const container = document.createElement('div')
     container.className = 'image-viewer-container'
 
@@ -20,4 +20,4 @@ const ViewViewer = (options = {}) => {
 
 }
 
-export default ViewViewer
+export default viewImages
