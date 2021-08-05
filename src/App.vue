@@ -69,6 +69,7 @@ import img_02 from './assets/02.jpeg'
 import img_03 from './assets/03.jpeg'
 import img_04 from './assets/04.jpeg'
 import img_05 from './assets/05.jpeg'
+
 export default {
   setup () {
 
