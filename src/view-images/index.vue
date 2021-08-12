@@ -1,9 +1,20 @@
 <template>
     <transition name="fade" @after-leave="$emit('destroy')">
-        <div class="image-viewer" v-show="visible" @click="tools.maskClick($event)">
+        <div
+            class="image-viewer"
+            @click="tools.maskClick($event)"
+            v-show="visible"
+        >
             <div class="mask"></div>
             <div class="content">
-                <div class="images-container" :style="{ transform: `translate(${current_ * -translateStep}%, 0)` }">
+                <div
+                    class="images-container"
+                    :style="{
+                        transform: `translate(${
+                            current_ * -translateStep
+                        }%, 0)`,
+                    }"
+                >
                     <div
                         class="image-item"
                         v-for="item in images_"
@@ -17,7 +28,7 @@
                             :style="{
                                 width: `${item.width}px`,
                                 marginLeft: `${item.marginLeft}px`,
-                                marginTop: `${item.marginTop}px`
+                                marginTop: `${item.marginTop}px`,
                             }"
                             @mousedown.prevent="listeners.mousedown"
                             @mousemove.prevent="listeners.mousemove"
@@ -27,41 +38,51 @@
             </div>
             <div class="actions">
                 <div class="top">
-                    <span class="index">{{ current_ + 1 }}/{{ images_.length }}</span>
+                    <span class="index"
+                        >{{ current_ + 1 }}/{{ images_.length }}</span
+                    >
                 </div>
                 <div class="close" @click="tools.close">
-                    <img src="./images/close.png"/>
+                    <img src="./images/close.png" />
                 </div>
-                <div class="item pre" @click="tools.pre" v-if="images.length > 1">
-                    <img src="./images/pre.png"/>
+                <div
+                    class="item pre"
+                    @click="tools.pre"
+                    v-if="images.length > 1"
+                >
+                    <img src="./images/pre.png" />
                 </div>
-                <div class="item next" @click="tools.next" v-if="images.length > 1">
-                    <img src="./images/next.png"/>
+                <div
+                    class="item next"
+                    @click="tools.next"
+                    v-if="images.length > 1"
+                >
+                    <img src="./images/next.png" />
                 </div>
                 <div class="bottom">
                     <!-- 放大 -->
                     <div class="item" @click="tools.zoomStep('in')">
-                        <img src="./images/zoom-in.png"/>
+                        <img src="./images/zoom-in.png" />
                     </div>
                     <!-- 缩小 -->
                     <div class="item" @click="tools.zoomStep('out')">
-                        <img src="./images/zoom-out.png"/>
+                        <img src="./images/zoom-out.png" />
                     </div>
                     <!-- 还原大小 -->
                     <div class="item" @click="tools.scaleRestore">
-                        <img src="./images/1-1.png"/>
+                        <img src="./images/1-1.png" />
                     </div>
                     <!-- 重置 -->
                     <div class="item" @click="tools.restore">
-                        <img src="./images/refresh.png"/>
+                        <img src="./images/refresh.png" />
                     </div>
                     <!-- 右转90度 -->
                     <div class="item" @click="tools.rotate(90)">
-                        <img src="./images/rotate-left.png"/>
+                        <img src="./images/rotate-left.png" />
                     </div>
                     <!-- 左转90度 -->
-                    <div class="item"  @click="tools.rotate(-90)">
-                        <img src="./images/rotate-right.png"/>
+                    <div class="item" @click="tools.rotate(-90)">
+                        <img src="./images/rotate-right.png" />
                     </div>
                 </div>
             </div>
@@ -71,7 +92,7 @@
 
 <script>
 import { ref } from "@vue/reactivity";
-import { onMounted } from "@vue/runtime-core";
+import { nextTick, onMounted } from "@vue/runtime-core";
 
 export default {
     name: "ViewImages",
@@ -90,13 +111,13 @@ export default {
         },
         images: {
             type: Array,
-            default() {
+            default () {
                 return []
             }
         },
     },
     emits: ["destroy"],
-    setup(props) {
+    setup (props) {
         const translateStep = 100 / props.images.length;
         const visible = ref(false);
 
@@ -163,7 +184,7 @@ export default {
          * @param { number } speed 速度
          * @param { function} fn 每次循环赋值后执行回调函数
          */
-        const aniIncrease = ({ target, image, key, speed, max}, fn) => {
+        const aniIncrease = ({ target, image, key, speed, max }, fn) => {
             const value = Number(image[key])
             if (value > target) {
                 image[key] = target
@@ -197,7 +218,7 @@ export default {
 
             image[key] -= speed
             if (typeof fn === 'function') fn(image[key])
-            
+
             requestAnimationFrame(() => {
                 aniDecrease({ target, image, key, speed }, fn)
             })
@@ -241,18 +262,18 @@ export default {
 
         /* 工具类方法 */
         const tools = {
-            pre() {
+            pre () {
                 if (current_.value <= 0) return;
                 tools.scaleRestore()
                 tools.restore()
                 current_.value--;
             },
-            next() {
+            next () {
                 if (current_.value >= images_.value.length - 1) return;
                 tools.restore();
                 current_.value++;
             },
-            zoomStep(type) {
+            zoomStep (type) {
                 const curImage = images_.value[current_.value];
                 if (type === "in") {
                     let target = Number((curImage.scale + 0.5).toFixed(2));
@@ -264,24 +285,24 @@ export default {
                     zoomOutTo(target)
                 }
             },
-            scaleRestore() {
+            scaleRestore () {
                 const curImage = images_.value[current_.value];
                 if (curImage.scale > 1) zoomOutTo(1);
                 if (curImage.scale < 1) zoomInTo(1);
             },
-            rotate(deg) {
+            rotate (deg) {
                 const curImage = images_.value[current_.value];
                 let rotation = curImage.rotation || 0;
                 rotation += deg;
                 curImage.rotation = rotation;
             },
-            restore() {
+            restore () {
                 const curImage = images_.value[current_.value];
                 curImage.rotation = 0;
                 positionRestore()
                 tools.scaleRestore()
             },
-            close() {
+            close () {
                 visible.value = false;
             },
             maskClick (e) {
@@ -296,7 +317,7 @@ export default {
 
         // 图片元素绑定事件
         const listeners = {
-            mousewheel(e) {
+            mousewheel (e) {
                 if (e.wheelDelta > 0) zoom("in")
                 if (e.wheelDelta < 0) zoom("out")
             },
@@ -321,7 +342,7 @@ export default {
             }
         };
 
-        onMounted(() => {
+        onMounted(async () => {
             visible.value = true
         })
 
@@ -455,10 +476,12 @@ export default {
     display: flex;
 }
 /* transition */
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
     transition: opacity 0.5s;
 }
-.fade-enter, .fade-leave-to {
+.fade-enter-from,
+.fade-leave-to {
     opacity: 0;
 }
 </style>
